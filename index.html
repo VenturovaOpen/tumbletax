@@ -76,8 +76,9 @@ ul{list-style:none; padding:0; margin:10px 0;}
     padding:20px;
     margin:20px 0;
     box-shadow:0 0 30px rgba(0,0,0,.6);
-    opacity:0;
-    animation:cardAppearFloat 4s ease forwards;
+    opacity:1; /* siempre visible */
+    transform:translateY(0);
+    animation:floatCard 4s ease-in-out infinite alternate;
 }
 
 .card:nth-child(1){animation-delay:0.2s;}
@@ -87,12 +88,10 @@ ul{list-style:none; padding:0; margin:10px 0;}
 .card:nth-child(5){animation-delay:1s;}
 .card:nth-child(6){animation-delay:1.2s;}
 
-@keyframes cardAppearFloat{
-    0% {opacity:0; transform:translateY(30px);}
-    20% {opacity:1; transform:translateY(0);}
-    50% {transform:translateY(-8px);}
-    80% {transform:translateY(0);}
-    100% {transform:translateY(-4px);}
+@keyframes floatCard{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+    100%{transform:translateY(0);}
 }
 
 .btn{
