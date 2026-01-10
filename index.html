@@ -16,27 +16,29 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hidden;scroll-behavior:smooth;}
 
-#logo{
-    width:120px; 
-    display:block; 
-    margin:20px auto;
-    border-radius:50%;
-    border:4px solid rgba(0,212,255,0.3);
-    box-shadow:0 0 20px rgba(0,212,255,0.5);
-    animation:logoFloat 4s ease-in-out infinite, logoGlow 2s ease-in-out infinite alternate;
-    opacity:0;
+/* Loader inicial */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
-
-@keyframes logoFloat{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-10px);}
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 8px solid rgba(0, 212, 255, 0.3);
+  border-top-color: #00d4ff;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
 }
+@keyframes spin { to { transform: rotate(360deg); } }
+#loader p { margin-top: 15px; color: #00d4ff; font-weight: bold; font-size: 1.15rem; }
 
-@keyframes logoGlow{
-    0%,100%{box-shadow:0 0 20px rgba(0,212,255,0.5);}
-    50%{box-shadow:0 0 40px rgba(0,212,255,0.8);}
-}
-
+/* Fondo animado */
 #bgImage{
     position:fixed; top:0; left:0; width:100%; height:100%; z-index:-2;
     background:url('visual.png') center center/cover no-repeat;
@@ -44,7 +46,6 @@ body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hid
     transform:translateZ(0);
     transition: transform 0.3s ease-out;
 }
-
 .overlay{
     position:fixed; inset:0; 
     background:var(--glass); 
@@ -60,7 +61,28 @@ body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hid
     text-align:center;
 }
 
-h1{
+/* Logo animado */
+#logo{
+    width:120px; 
+    display:block; 
+    margin:20px auto;
+    border-radius:50%;
+    border:4px solid rgba(0,212,255,0.3);
+    box-shadow:0 0 20px rgba(0,212,255,0.5);
+    animation:logoFloat 4s ease-in-out infinite, logoGlow 2s ease-in-out infinite alternate;
+    opacity:0;
+}
+@keyframes logoFloat{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+@keyframes logoGlow{
+    0%,100%{box-shadow:0 0 20px rgba(0,212,255,0.5);}
+    50%{box-shadow:0 0 40px rgba(0,212,255,0.8);}
+}
+
+/* Título animado */
+#title{
     font-size:2.5rem;
     color:var(--accent);
     margin:15px 0;
@@ -68,11 +90,19 @@ h1{
     transition: transform 0.3s ease-out, text-shadow 0.3s ease-out;
     opacity:0;
     transform:scale(0.8);
+    animation: titleGlow 3s ease-in-out infinite alternate, titleFloat 4s ease-in-out infinite alternate;
+}
+@keyframes titleGlow {
+  0% { text-shadow: 0 0 8px rgba(0,212,255,0.6); }
+  100% { text-shadow: 0 0 20px rgba(0,212,255,1); }
+}
+@keyframes titleFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
 }
 
-p, li{font-size:1.1rem; line-height:1.6;}
-ul{list-style:none; padding:0; margin:10px 0;}
-
+/* Cards animados */
 .card{
     background:var(--glass);
     backdrop-filter:blur(8px);
@@ -84,12 +114,18 @@ ul{list-style:none; padding:0; margin:10px 0;}
     opacity:0;
     transform:translateY(50px);
 }
-
 .card:hover{
     transform:translateY(-5px);
     filter:brightness(1.1);
 }
+.card:nth-child(1) { animation-delay: 0.3s; }
+.card:nth-child(2) { animation-delay: 0.5s; }
+.card:nth-child(3) { animation-delay: 0.7s; }
+.card:nth-child(4) { animation-delay: 0.9s; }
+.card:nth-child(5) { animation-delay: 1.1s; }
+.card:nth-child(6) { animation-delay: 1.3s; }
 
+/* Botón */
 .btn{
     display:inline-block;
     margin:15px 10px;
@@ -101,9 +137,10 @@ ul{list-style:none; padding:0; margin:10px 0;}
     text-decoration:none;
     transition:transform .3s, box-shadow .3s;
 }
-
 .btn:hover{transform:scale(1.08); box-shadow:0 0 25px var(--accent);}
-footer{text-align:center; padding:20px; opacity:0.7; font-size:0.9rem;}
+
+/* Footer */
+footer{text-align:center; padding:20px; opacity:.7; font-size:0.9rem;}
 
 @media(max-width:768px){
     h1{font-size:2rem;}
@@ -114,7 +151,14 @@ footer{text-align:center; padding:20px; opacity:0.7; font-size:0.9rem;}
 </head>
 <body>
 
-<img id="logo" src="logo.jpg" alt="Tumble Tax Logo">
+<!-- Loader -->
+<div id="loader">
+  <div class="spinner"></div>
+  <p>Cargando Tumble Tax...</p>
+</div>
+
+<!-- Logo y Fondo -->
+<img id="logo" src="logo1.jpeg" alt="Tumble Tax Logo">
 <div id="bgImage"></div>
 <div class="overlay"></div>
 
@@ -166,8 +210,9 @@ footer{text-align:center; padding:20px; opacity:0.7; font-size:0.9rem;}
 <footer>Tumble Tax © 2026 | Torneos Free Fire</footer>
 
 <script>
-// Animación de "generación de mundo" al cargar
+// Loader inicial
 window.addEventListener('load', ()=>{
+    document.getElementById('loader').style.display='none';
     const logo = document.getElementById('logo');
     const title = document.getElementById('title');
     const cards = document.querySelectorAll('.card');
