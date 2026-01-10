@@ -23,15 +23,26 @@ body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hid
     margin:20px auto; 
     border-radius:50%;
     border:4px solid rgba(0,212,255,0.3);
-    transition: transform 0.5s, box-shadow 0.5s;
+    box-shadow:0 0 20px rgba(0,212,255,0.5);
+    animation:logoFloat 4s ease-in-out infinite, logoGlow 2s ease-in-out infinite alternate;
 }
-#logo.scroll-up{transform:translateY(-30px);opacity:0;}
-#logo.scroll-down{transform:translateY(0);opacity:1;}
+
+@keyframes logoFloat{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+@keyframes logoGlow{
+    0%,100%{box-shadow:0 0 20px rgba(0,212,255,0.5);}
+    50%{box-shadow:0 0 40px rgba(0,212,255,0.8);}
+}
 
 #bgImage{
     position:fixed; top:0; left:0; width:100%; height:100%; z-index:-2;
     background:url('visual.png') center center/cover no-repeat;
     filter:brightness(0.35);
+    transform:translateZ(0);
+    transition: transform 0.3s ease-out;
 }
 
 .overlay{
@@ -54,11 +65,8 @@ h1{
     color:var(--accent);
     margin:15px 0;
     text-shadow:2px 2px 10px rgba(0,212,255,0.5);
-    transition: transform 0.5s, opacity 0.5s;
+    transition: transform 0.3s ease-out, text-shadow 0.3s ease-out;
 }
-
-h1.scroll-up{transform:translateY(-40px); opacity:0;}
-h1.scroll-down{transform:translateY(0); opacity:1;}
 
 p, li{font-size:1.1rem; line-height:1.6;}
 ul{list-style:none; padding:0; margin:10px 0;}
@@ -70,13 +78,13 @@ ul{list-style:none; padding:0; margin:10px 0;}
     padding:20px;
     margin:20px 0;
     box-shadow:0 0 30px rgba(0,0,0,.6);
-    opacity:1;
-    transform:translateY(0);
-    transition: transform 0.5s, opacity 0.5s;
+    transition: transform 0.3s ease-out, filter 0.3s ease-out;
 }
 
-.card.scroll-up{transform:translateY(-40px); opacity:0;}
-.card.scroll-down{transform:translateY(0); opacity:1;}
+.card:hover{
+    transform:translateY(-5px);
+    filter:brightness(1.1);
+}
 
 .btn{
     display:inline-block;
@@ -157,32 +165,13 @@ footer{text-align:center; padding:20px; opacity:0.7; font-size:0.9rem;}
 <footer>Tumble Tax © 2026 | Torneos Free Fire</footer>
 
 <script>
-// Scroll detection para animaciones
-let lastScroll = 0;
-const cards = document.querySelectorAll('.card');
-const logo = document.getElementById('logo');
+// efecto parallax ligero en scroll
+const bg = document.getElementById('bgImage');
 const title = document.getElementById('title');
-
 window.addEventListener('scroll', ()=>{
-    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-    if(currentScroll > lastScroll){
-        // Scroll down
-        cards.forEach(c=>c.classList.add('scroll-up'));
-        title.classList.add('scroll-up');
-        logo.classList.add('scroll-up');
-        cards.forEach(c=>c.classList.remove('scroll-down'));
-        title.classList.remove('scroll-down');
-        logo.classList.remove('scroll-down');
-    } else {
-        // Scroll up
-        cards.forEach(c=>c.classList.add('scroll-down'));
-        title.classList.add('scroll-down');
-        logo.classList.add('scroll-down');
-        cards.forEach(c=>c.classList.remove('scroll-up'));
-        title.classList.remove('scroll-up');
-        logo.classList.remove('scroll-up');
-    }
-    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+    const scrollY = window.scrollY;
+    bg.style.transform = `translateY(${scrollY*0.05}px) scale(1.02)`;
+    title.style.transform = `translateY(${scrollY*0.03}px)`;
 });
 </script>
 
