@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tumble Tax | Torneos Free Fire</title>
 
-<!-- FUENTES -->
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -19,23 +18,37 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hidden;}
 
-#logo{width:120px; display:block; margin:20px auto; animation:logoAnim 3s ease-in-out infinite;}
-@keyframes logoAnim{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+#logo{
+    width:120px; 
+    display:block; 
+    margin:20px auto; 
+    border-radius:50%;
+    border:4px solid rgba(255,255,255,0.2);
+    animation:logoPulse 2s ease-in-out infinite;
+}
+@keyframes logoPulse{
+    0%,100%{transform:scale(1); box-shadow:0 0 10px rgba(255,215,0,0.5);}
+    50%{transform:scale(1.1); box-shadow:0 0 20px rgba(255,215,0,0.8);}
+}
 
 #bgImage{
     position:fixed; top:0; left:0; width:100%; height:100%; z-index:-2;
     background:url('visual.png') center center/cover no-repeat;
-    animation:moveBg 20s linear infinite;
+    animation:moveBg 15s linear infinite alternate;
     filter:brightness(0.35);
 }
 
 @keyframes moveBg{
     0%{transform:scale(1) translateY(0);}
-    50%{transform:scale(1.05) translateY(-20px);}
+    50%{transform:scale(1.05) translateY(-15px);}
     100%{transform:scale(1) translateY(0);}
 }
 
-.overlay{position:fixed; inset:0; background:var(--glass); z-index:-1;}
+.overlay{
+    position:fixed; inset:0; 
+    background:var(--glass); 
+    z-index:-1;
+}
 
 .container{
     position:relative;
@@ -63,12 +76,26 @@ ul{list-style:none; padding:0; margin:10px 0;}
     padding:20px;
     margin:20px 0;
     box-shadow:0 0 30px rgba(0,0,0,.6);
-    animation:cardAppear 1s ease forwards;
+    opacity:0;
+    transform:translateY(30px);
+    animation:cardAppear 0.8s ease forwards, floatCard 4s ease-in-out infinite alternate;
 }
 
+.card:nth-child(1){animation-delay:0.2s;}
+.card:nth-child(2){animation-delay:0.4s;}
+.card:nth-child(3){animation-delay:0.6s;}
+.card:nth-child(4){animation-delay:0.8s;}
+.card:nth-child(5){animation-delay:1s;}
+.card:nth-child(6){animation-delay:1.2s;}
+
 @keyframes cardAppear{
-    from{opacity:0; transform:translateY(20px);}
     to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes floatCard{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+    100%{transform:translateY(0);}
 }
 
 .btn{
@@ -81,9 +108,15 @@ ul{list-style:none; padding:0; margin:10px 0;}
     font-weight:700;
     text-decoration:none;
     transition:transform .3s, box-shadow .3s;
+    animation:btnPulse 2s ease-in-out infinite;
 }
 
-.btn:hover{transform:scale(1.05); box-shadow:0 0 20px var(--yellow);}
+@keyframes btnPulse{
+    0%,100%{transform:scale(1); box-shadow:0 0 10px rgba(255,215,0,0.5);}
+    50%{transform:scale(1.05); box-shadow:0 0 20px rgba(255,215,0,0.8);}
+}
+
+.btn:hover{transform:scale(1.08); box-shadow:0 0 25px var(--yellow);}
 
 footer{
     text-align:center;
@@ -92,7 +125,6 @@ footer{
     font-size:0.9rem;
 }
 
-/* MOBILE */
 @media(max-width:768px){
     h1{font-size:2rem;}
     p, li{font-size:1rem;}
@@ -109,53 +141,4 @@ footer{
 
 <div class="container">
 
-    <h1>Tumble Tax Free Fire</h1>
-    <div class="card">
-        <h2>🎯 Nuestro Objetivo</h2>
-        <p>Crear una comunidad fuerte y profesional donde los jugadores puedan disfrutar torneos diarios, competir de manera justa y ganar recompensas reales. ¡Tu participación hace crecer Tumble Tax!</p>
-    </div>
-
-    <div class="card">
-        <h2>📌 Información del Torneo</h2>
-        <ul>
-            <li>Modalidad: Battle Royale – Equipos</li>
-            <li>Cupos: 12 equipos</li>
-            <li>Inscripción: 15.000 COP por equipo (≈ 3.750 COP por jugador)</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h2>📅 Fecha y Horario</h2>
-        <p>La fecha se definirá al completarse los 12 equipos inscritos.</p>
-        <p>Se jugará en horario nocturno, desde las 9:00 p.m. en adelante.</p>
-    </div>
-
-    <div class="card">
-        <h2>🏟️ Formato del Torneo</h2>
-        <p>Se iniciará con una <b>sala de práctica</b> para familiarizarse con el ambiente del torneo.</p>
-        <p>Al finalizar, se creará la <b>sala avanzada</b>, que será la oficial y definirá a los ganadores.</p>
-    </div>
-
-    <div class="card">
-        <h2>🏆 Premios</h2>
-        <ul>
-            <li>Equipo ganador: 100.000 COP</li>
-            <li>Equipo con más kills: 40.000 COP</li>
-            <li>Si el mismo equipo gana ambas, recibe 140.000 COP</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h2>📩 Inscripción</h2>
-        <p>Confirma tu participación haciendo click en el botón de abajo y únete a nuestro Discord:</p>
-        <a class="btn" href="https://discord.gg/U3CTxjW9" target="_blank">✅ Unirme al Discord</a>
-    </div>
-
-</div>
-
-<footer>
-Tumble Tax © 2026 | Torneos Free Fire
-</footer>
-
-</body>
-</html>
+    <h1>T
