@@ -5,218 +5,156 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tumble Tax | Torneos Free Fire</title>
 
+<!-- FUENTES -->
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root{
-  --blue:#4da3ff;
-  --dark:#0b0f1a;
-  --card:#12172a;
-  --border:#1f2a44;
-  --text:#e6e9f2;
+    --yellow:#FFD700;
+    --blue:#00d4ff;
+    --black:#0b0b0b;
+    --glass:rgba(0,0,0,.6);
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hidden;}
 
-body{
-  font-family:Arial, Helvetica, sans-serif;
-  background:linear-gradient(180deg,#0b0f1a,#05070d);
-  color:var(--text);
-  overflow-x:hidden;
+#logo{width:120px; display:block; margin:20px auto; animation:logoAnim 3s ease-in-out infinite;}
+@keyframes logoAnim{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+
+#bgImage{
+    position:fixed; top:0; left:0; width:100%; height:100%; z-index:-2;
+    background:url('visual.png') center center/cover no-repeat;
+    animation:moveBg 20s linear infinite;
+    filter:brightness(0.35);
 }
 
-/* ANIMACIONES */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
+@keyframes moveBg{
+    0%{transform:scale(1) translateY(0);}
+    50%{transform:scale(1.05) translateY(-20px);}
+    100%{transform:scale(1) translateY(0);}
 }
 
-header{
-  padding:60px 20px;
-  text-align:center;
-  border-bottom:1px solid var(--border);
-  animation:fadeUp 1s ease;
+.overlay{position:fixed; inset:0; background:var(--glass); z-index:-1;}
+
+.container{
+    position:relative;
+    z-index:1;
+    padding:20px;
+    max-width:600px;
+    margin:0 auto;
+    text-align:center;
 }
 
-header h1{
-  font-size:3rem;
-  letter-spacing:3px;
-  margin-bottom:10px;
+h1{
+    font-size:2.5rem;
+    color:var(--yellow);
+    margin:15px 0;
+    text-shadow:2px 2px 5px #000;
 }
 
-header p{
-  max-width:800px;
-  margin:auto;
-  opacity:.85;
-  line-height:1.6;
-}
-
-main{
-  max-width:1000px;
-  margin:auto;
-  padding:60px 20px;
-}
-
-.section{
-  margin-bottom:50px;
-  animation:fadeUp 1s ease;
-}
+p, li{font-size:1.1rem; line-height:1.6;}
+ul{list-style:none; padding:0; margin:10px 0;}
 
 .card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:35px;
+    background:var(--glass);
+    backdrop-filter:blur(8px);
+    border-radius:20px;
+    padding:20px;
+    margin:20px 0;
+    box-shadow:0 0 30px rgba(0,0,0,.6);
+    animation:cardAppear 1s ease forwards;
 }
 
-.card h2{
-  color:var(--blue);
-  margin-bottom:20px;
-  font-size:1.8rem;
-}
-
-.card p{
-  line-height:1.6;
-  opacity:.9;
-}
-
-.card ul{
-  padding-left:20px;
-  margin-top:15px;
-}
-
-.card li{
-  margin-bottom:10px;
-}
-
-/* BOTONES */
-.buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:15px;
-  margin-top:25px;
+@keyframes cardAppear{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
 .btn{
-  padding:16px 28px;
-  border-radius:10px;
-  font-weight:bold;
-  text-decoration:none;
-  text-align:center;
-  transition:.3s;
+    display:inline-block;
+    margin:15px 10px;
+    padding:15px 30px;
+    border-radius:30px;
+    background:var(--yellow);
+    color:#000;
+    font-weight:700;
+    text-decoration:none;
+    transition:transform .3s, box-shadow .3s;
 }
 
-.btn-info{
-  background:#1f2a44;
-  color:#fff;
-}
+.btn:hover{transform:scale(1.05); box-shadow:0 0 20px var(--yellow);}
 
-.btn-discord{
-  background:#5865F2;
-  color:#fff;
-}
-
-.btn:hover{
-  transform:translateY(-3px);
-}
-
-/* FOOTER */
 footer{
-  text-align:center;
-  padding:40px 20px;
-  border-top:1px solid var(--border);
-  opacity:.7;
+    text-align:center;
+    padding:20px;
+    opacity:0.7;
+    font-size:0.9rem;
 }
 
-/* RESPONSIVE */
-@media(max-width:600px){
-  header h1{font-size:2.2rem}
+/* MOBILE */
+@media(max-width:768px){
+    h1{font-size:2rem;}
+    p, li{font-size:1rem;}
+    .card{padding:15px;}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>TUMBLE TAX</h1>
-  <p>
-    Proyecto competitivo de <b>Free Fire</b> enfocado en construir una comunidad seria,
-    activa y organizada.  
-    El objetivo es desarrollar <b>torneos diarios</b>, con reglas claras, premios reales
-    y total transparencia para jugadores competitivos.
-  </p>
-</header>
+<img id="logo" src="logo.jpg" alt="Tumble Tax Logo">
+<div id="bgImage"></div>
+<div class="overlay"></div>
 
-<main>
+<div class="container">
 
-  <!-- OBJETIVO -->
-  <section class="section">
+    <h1>Tumble Tax Free Fire</h1>
     <div class="card">
-      <h2>Objetivo del Proyecto</h2>
-      <p>
-        Tumble Tax nace con la meta de crear una comunidad sólida de jugadores de Free Fire
-        que busquen competencia real.  
-        A medida que la comunidad crezca, se habilitarán torneos constantes,
-        mejor estructura organizativa y mayores oportunidades para todos los participantes.
-      </p>
-      <p>
-        Aquí no se improvisa: cada torneo se realiza, los premios se pagan al finalizar
-        y la información siempre es pública.
-      </p>
+        <h2>🎯 Nuestro Objetivo</h2>
+        <p>Crear una comunidad fuerte y profesional donde los jugadores puedan disfrutar torneos diarios, competir de manera justa y ganar recompensas reales. ¡Tu participación hace crecer Tumble Tax!</p>
     </div>
-  </section>
 
-  <!-- INFO TORNEO -->
-  <section class="section">
     <div class="card">
-      <h2>Información del Torneo</h2>
-      <ul>
-        <li>Modalidad: Battle Royale – Equipos</li>
-        <li>Cupos: 12 equipos</li>
-        <li>Inscripción: 15.000 COP por equipo (3.750 COP por jugador)</li>
-        <li>Horario: Noches, desde las 9:00 p. m. en adelante</li>
-        <li>Formato: Sala de práctica + Sala avanzada oficial</li>
-      </ul>
+        <h2>📌 Información del Torneo</h2>
+        <ul>
+            <li>Modalidad: Battle Royale – Equipos</li>
+            <li>Cupos: 12 equipos</li>
+            <li>Inscripción: 15.000 COP por equipo (≈ 3.750 COP por jugador)</li>
+        </ul>
     </div>
-  </section>
 
-  <!-- PREMIOS -->
-  <section class="section">
     <div class="card">
-      <h2>Premios</h2>
-      <ul>
-        <li>Equipo ganador: 100.000 COP</li>
-        <li>Equipo con más kills: 40.000 COP</li>
-        <li>Si un mismo equipo gana ambas categorías: 140.000 COP</li>
-      </ul>
-      <p>
-        Los pagos se realizan inmediatamente al finalizar el torneo.
-      </p>
+        <h2>📅 Fecha y Horario</h2>
+        <p>La fecha se definirá al completarse los 12 equipos inscritos.</p>
+        <p>Se jugará en horario nocturno, desde las 9:00 p.m. en adelante.</p>
     </div>
-  </section>
 
-  <!-- DISCORD -->
-  <section class="section">
     <div class="card">
-      <h2>Inscripción y Comunidad</h2>
-      <p>
-        Toda la organización del torneo, inscripciones, avisos oficiales
-        y resultados se gestionan exclusivamente desde nuestro servidor de Discord.
-      </p>
-
-      <div class="buttons">
-        <a 
-          href="https://discord.gg/U3CTxjW9"
-          target="_blank"
-          class="btn btn-discord">
-          Unirse al Discord
-        </a>
-      </div>
+        <h2>🏟️ Formato del Torneo</h2>
+        <p>Se iniciará con una <b>sala de práctica</b> para familiarizarse con el ambiente del torneo.</p>
+        <p>Al finalizar, se creará la <b>sala avanzada</b>, que será la oficial y definirá a los ganadores.</p>
     </div>
-  </section>
 
-</main>
+    <div class="card">
+        <h2>🏆 Premios</h2>
+        <ul>
+            <li>Equipo ganador: 100.000 COP</li>
+            <li>Equipo con más kills: 40.000 COP</li>
+            <li>Si el mismo equipo gana ambas, recibe 140.000 COP</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>📩 Inscripción</h2>
+        <p>Confirma tu participación haciendo click en el botón de abajo y únete a nuestro Discord:</p>
+        <a class="btn" href="https://discord.gg/U3CTxjW9" target="_blank">✅ Unirme al Discord</a>
+    </div>
+
+</div>
 
 <footer>
-  © 2026 Tumble Tax — Torneos Competitivos de Free Fire
+Tumble Tax © 2026 | Torneos Free Fire
 </footer>
 
 </body>
