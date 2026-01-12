@@ -9,6 +9,7 @@
 <style>
 :root{
     --accent:#00d4ff;
+    --whatsapp:#25D366;
     --black:#0b0b0b;
     --glass:rgba(0,0,0,.6);
 }
@@ -16,224 +17,155 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hidden;scroll-behavior:smooth;}
 
-/* Loader inicial */
-#loader {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+/* Loader */
+#loader{
+  position:fixed;inset:0;background:#000;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  z-index:9999;
 }
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 8px solid rgba(0, 212, 255, 0.3);
-  border-top-color: #00d4ff;
-  border-radius: 50%;
-  animation: spin 1.2s linear infinite;
+.spinner{
+  width:60px;height:60px;
+  border:8px solid rgba(0,212,255,.3);
+  border-top-color:#00d4ff;
+  border-radius:50%;
+  animation:spin 1.2s linear infinite;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
-#loader p { margin-top: 15px; color: #00d4ff; font-weight: bold; font-size: 1.15rem; }
+@keyframes spin{to{transform:rotate(360deg);}}
+#loader p{margin-top:15px;color:#00d4ff;font-weight:bold}
 
-/* Fondo animado */
+/* Fondo */
 #bgImage{
-    position:fixed; top:0; left:0; width:100%; height:100%; z-index:-2;
-    background:url('visual.png') center center/cover no-repeat;
-    filter:brightness(0.35);
-    transform:translateZ(0);
-    transition: transform 0.3s ease-out;
+  position:fixed;inset:0;z-index:-2;
+  background:url('visual.png') center/cover no-repeat;
+  filter:brightness(.35);
 }
-.overlay{
-    position:fixed; inset:0; 
-    background:var(--glass); 
-    z-index:-1;
-}
+.overlay{position:fixed;inset:0;background:var(--glass);z-index:-1;}
 
-.container{
-    position:relative;
-    z-index:1;
-    padding:20px;
-    max-width:600px;
-    margin:0 auto;
-    text-align:center;
-}
+.container{max-width:600px;margin:auto;padding:20px;text-align:center;}
 
-/* Logo animado */
+/* Logo */
 #logo{
-    width:140px;
-    height:140px;
-    display:block;
-    margin:20px auto;
-    border-radius:50%; /* redondeado completo */
-    border:4px solid rgba(0,212,255,0.3);
-    box-shadow:0 0 25px rgba(0,212,255,0.6), 0 0 35px rgba(0,0,0,0.5);
-    animation:logoFloat 4s ease-in-out infinite, logoGlow 2s ease-in-out infinite alternate;
-    object-fit:cover; /* evita que se corte */
-    opacity:0;
+  width:140px;height:140px;margin:20px auto;
+  border-radius:50%;border:4px solid rgba(0,212,255,.3);
+  box-shadow:0 0 25px rgba(0,212,255,.6);
+  animation:logoFloat 4s ease-in-out infinite;
+  opacity:0;
 }
 @keyframes logoFloat{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-10px);}
-}
-@keyframes logoGlow{
-    0%,100%{box-shadow:0 0 25px rgba(0,212,255,0.6), 0 0 35px rgba(0,0,0,0.5);}
-    50%{box-shadow:0 0 45px rgba(0,212,255,0.8), 0 0 35px rgba(0,0,0,0.5);}
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
 }
 
-/* Título animado */
+/* Título */
 #title{
-    font-size:2.5rem;
-    color:var(--accent);
-    margin:15px 0;
-    text-shadow:2px 2px 10px rgba(0,212,255,0.5);
-    transition: transform 0.3s ease-out, text-shadow 0.3s ease-out;
-    opacity:0;
-    transform:scale(0.8);
-    animation: titleGlow 3s ease-in-out infinite alternate, titleFloat 4s ease-in-out infinite alternate;
+  font-size:2.5rem;color:var(--accent);
+  opacity:0;transform:scale(.8);
+  animation:titleGlow 3s infinite alternate;
 }
-@keyframes titleGlow {
-  0% { text-shadow: 0 0 8px rgba(0,212,255,0.6); }
-  100% { text-shadow: 0 0 20px rgba(0,212,255,1); }
-}
-@keyframes titleFloat {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
+@keyframes titleGlow{
+  from{text-shadow:0 0 8px rgba(0,212,255,.6);}
+  to{text-shadow:0 0 20px rgba(0,212,255,1);}
 }
 
-/* Cards animados */
+/* Cards */
 .card{
-    background:var(--glass);
-    backdrop-filter:blur(8px);
-    border-radius:20px;
-    padding:20px;
-    margin:20px 0;
-    box-shadow:0 0 30px rgba(0,0,0,.6);
-    transition: transform 0.3s ease-out, filter 0.3s ease-out, opacity 0.5s ease-out;
-    opacity:0;
-    transform:translateY(50px);
-}
-.card:hover{
-    transform:translateY(-5px);
-    filter:brightness(1.1);
+  background:var(--glass);
+  backdrop-filter:blur(8px);
+  border-radius:20px;
+  padding:20px;margin:20px 0;
+  opacity:0;transform:translateY(50px);
+  transition:.4s;
 }
 
-/* Botón */
+/* Botón WhatsApp (ÚNICO CAMBIO VISUAL) */
 .btn{
-    display:inline-block;
-    margin:15px 10px;
-    padding:15px 30px;
-    border-radius:30px;
-    background:var(--accent);
-    color:#000;
-    font-weight:700;
-    text-decoration:none;
-    transition:transform .3s, box-shadow .3s;
+  display:inline-block;
+  margin:15px 10px;
+  padding:15px 30px;
+  border-radius:30px;
+  background:var(--whatsapp);
+  color:#000;
+  font-weight:700;
+  text-decoration:none;
+  transition:.3s;
 }
-.btn:hover{transform:scale(1.08); box-shadow:0 0 25px var(--accent);}
-
-/* Footer */
-footer{text-align:center; padding:20px; opacity:.7; font-size:0.9rem;}
-
-@media(max-width:768px){
-    h1{font-size:2rem;}
-    p, li{font-size:1rem;}
-    .card{padding:15px;}
+.btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 25px var(--whatsapp);
 }
+
+footer{text-align:center;padding:20px;opacity:.7;font-size:.9rem;}
 </style>
 </head>
+
 <body>
 
-<!-- Loader -->
 <div id="loader">
   <div class="spinner"></div>
   <p>Cargando Tumble Tax...</p>
 </div>
 
-<!-- Logo y Fondo -->
 <img id="logo" src="logo1.jpeg" alt="Tumble Tax Logo">
 <div id="bgImage"></div>
 <div class="overlay"></div>
 
 <div class="container">
-    <h1 id="title">Tumble Tax Free Fire</h1>
+<h1 id="title">Tumble Tax Free Fire</h1>
 
-    <div class="card"> 
-        <h2>🎯 Nuestro Objetivo</h2>
-        <p>Crear una comunidad fuerte y profesional donde los jugadores puedan disfrutar torneos diarios, competir de manera justa y ganar recompensas reales. ¡Tu participación hace crecer Tumble Tax!</p>
-    </div>
+<div class="card">
+<h2>🎯 Nuestro Objetivo</h2>
+<p>Crear una comunidad fuerte y profesional donde los jugadores puedan disfrutar torneos diarios, competir de manera justa y ganar recompensas reales.</p>
+</div>
 
-    <div class="card">
-        <h2>📌 Información del Torneo</h2>
-        <ul>
-            <li>Modalidad: Battle Royale – Equipos</li>
-            <li>Cupos: 12 equipos</li>
-            <li>Inscripción: 15.000 COP por equipo (≈ 3.750 COP por jugador)</li>
-        </ul>
-    </div>
+<div class="card">
+<h2>📌 Información del Torneo</h2>
+<ul>
+<li>Modalidad: Battle Royale – Equipos</li>
+<li>Cupos: 12 equipos</li>
+<li>Inscripción: 15.000 COP por equipo</li>
+</ul>
+</div>
 
-    <div class="card">
-        <h2>📅 Fecha y Horario</h2>
-        <p>La fecha se definirá al completarse los 12 equipos inscritos.</p>
-        <p>Se jugará en horario nocturno, desde las 9:00 p.m. en adelante.</p>
-    </div>
+<div class="card">
+<h2>📅 Fecha y Horario</h2>
+<p>La fecha se definirá al completarse los 12 equipos inscritos.</p>
+<p>Horario nocturno desde las 9:00 p.m.</p>
+</div>
 
-    <div class="card">
-        <h2>🏟️ Formato del Torneo</h2>
-        <p>Se iniciará con una <b>sala de práctica</b> para familiarizarse con el ambiente del torneo.</p>
-        <p>Al finalizar, se creará la <b>sala avanzada</b>, que será la oficial y definirá a los ganadores.</p>
-    </div>
+<div class="card">
+<h2>🏆 Premios</h2>
+<ul>
+<li>Equipo ganador: 100.000 COP</li>
+<li>Equipo con más kills: 40.000 COP</li>
+</ul>
+</div>
 
-    <div class="card">
-        <h2>🏆 Premios</h2>
-        <ul>
-            <li>Equipo ganador: 100.000 COP</li>
-            <li>Equipo con más kills: 40.000 COP</li>
-            <li>Si el mismo equipo gana ambas, recibe 140.000 COP</li>
-        </ul>
-    </div>
+<div class="card">
+<h2>📩 Inscripción</h2>
+<p>Únete a nuestra comunidad de WhatsApp.  
+Allí se enviarán todos los detalles de la inscripción.</p>
 
-    <div class="card">
-        <h2>📩 Inscripción</h2>
-        <p>Confirma tu participación haciendo click en el botón de abajo y únete a nuestro Discord:</p>
-        <a class="btn" href="https://discord.gg/P4Q533kS6A" target="_blank">✅ Unirme al Discord</a>
-    </div>
+<a class="btn"
+   href="https://chat.whatsapp.com/KXQaNkXyiFW9BQgMOap3kI"
+   target="_blank">
+   ✅ Unirme a la Comunidad de WhatsApp
+</a>
+</div>
 </div>
 
 <footer>Tumble Tax © 2026 | Torneos Free Fire</footer>
 
 <script>
-// Loader inicial
-window.addEventListener('load', ()=>{
-    document.getElementById('loader').style.display='none';
-    const logo = document.getElementById('logo');
-    const title = document.getElementById('title');
-    const cards = document.querySelectorAll('.card');
-
-    logo.style.transition = "opacity 1s ease-out, transform 1s ease-out";
-    logo.style.opacity = "1";
-    logo.style.transform = "translateY(0)";
-
-    title.style.transition = "opacity 1s ease-out 0.5s, transform 1s ease-out 0.5s";
-    title.style.opacity = "1";
-    title.style.transform = "scale(1)";
-
-    cards.forEach((card,i)=>{
-        setTimeout(()=>{
-            card.style.opacity = "1";
-            card.style.transform = "translateY(0)";
-        }, 500 + i*200);
-    });
-});
-
-// Scroll parallax sutil
-const bg = document.getElementById('bgImage');
-window.addEventListener('scroll', ()=>{
-    const scrollY = window.scrollY;
-    bg.style.transform = `translateY(${scrollY*0.05}px) scale(1.02)`;
+window.addEventListener('load',()=>{
+  loader.style.display='none';
+  logo.style.opacity=1;
+  title.style.opacity=1;
+  document.querySelectorAll('.card')
+  .forEach((c,i)=>setTimeout(()=>{
+    c.style.opacity=1;
+    c.style.transform='translateY(0)';
+  },300+i*200));
 });
 </script>
 
