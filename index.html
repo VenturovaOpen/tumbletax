@@ -54,7 +54,7 @@ body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hid
     text-align:center;
 }
 
-/* LOGO */
+/* Logo */
 #logo{
     width:140px;
     height:140px;
@@ -106,29 +106,83 @@ body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hid
     transition:0.3s;
 }
 .btn:hover{transform:scale(1.08); box-shadow:0 0 25px var(--accent);}
+
+footer{text-align:center; padding:20px; opacity:.7;}
 </style>
 </head>
+
 <body>
 
 <div id="loader">
-    <div class="spinner"></div>
+  <div class="spinner"></div>
+  <p>Cargando Tumble Tax...</p>
 </div>
 
+<img id="logo" src="logo1.jpeg" alt="Tumble Tax Logo">
 <div id="bgImage"></div>
 <div class="overlay"></div>
 
 <div class="container">
-    <img src="logo.png" alt="Logo" id="logo">
-    <h1 id="title">Tumble Tax</h1>
+<h1 id="title">Tumble Tax Free Fire</h1>
 
-    <!-- Aquí van otras secciones de tu página como inscripción, información, etc. -->
-
-    <section id="recompensas" class="card">
-        <h2>Recompensas</h2>
-        <!-- Contenido de recompensas que ya tenías -->
-        <p><strong>Nota:</strong> En caso de que no se inscriban al final del día los 12 equipos, se redistribuirán las recompensas.</p>
-    </section>
+<div class="card">
+<h2>🎯 Nuestro Objetivo</h2>
+<p>Crear una comunidad fuerte y profesional donde los jugadores puedan disfrutar torneos diarios, competir de manera justa y ganar recompensas reales.</p>
 </div>
+
+<div class="card">
+<h2>📌 Información del Torneo</h2>
+<ul>
+<li>Modalidad: Battle Royale – Equipos</li>
+<li>Cupos: 12 equipos</li>
+<li>Inscripción: 15.000 COP por equipo (≈ 3.750 COP por jugador)</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>📅 Fecha y Horario</h2>
+<p>La fecha se definirá al completarse los 12 equipos inscritos.</p>
+<p>Se jugará en horario nocturno, desde las 9:00 p.m. en adelante.</p>
+</div>
+
+<div class="card">
+<h2>🏟️ Formato del Torneo</h2>
+<p>Se iniciará con una <b>sala de práctica</b>.</p>
+<p>Luego se jugará la <b>sala avanzada</b>, que definirá a los ganadores.</p>
+</div>
+
+<!-- PREMIO MODIFICADO -->
+<div class="card">
+<h2>🏆 Premios</h2>
+<ul>
+<li><b>Equipo ganador: 130.000 COP</b></li>
+<li>Esta es la recompensa base.</li>
+<li>Si no se completan los 12 equipos, el monto se redistribuye proporcionalmente.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>📩 Inscripción</h2>
+<p>Confirma tu participación haciendo click en el botón de abajo y únete a nuestra comunidad de WhatsApp:</p>
+<a class="btn" href="https://chat.whatsapp.com/KXQaNkXyiFW9BQgMOap3kI" target="_blank">
+✅ Unirme a la Comunidad de WhatsApp
+</a>
+</div>
+
+</div>
+
+<footer>Tumble Tax © 2026 | Torneos Free Fire</footer>
+
+<script>
+window.addEventListener('load', ()=>{
+  loader.style.display='none';
+  logo.style.opacity=1;
+  title.style.opacity=1;
+  document.querySelectorAll('.card').forEach((c,i)=>{
+    setTimeout(()=>{c.style.opacity=1;c.style.transform='translateY(0)';},400+i*200);
+  });
+});
+</script>
 
 </body>
 </html>
