@@ -14,36 +14,55 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hidden;scroll-behavior:smooth;}
+body{
+    font-family:'Rajdhani',sans-serif;
+    background:#000;
+    color:#fff;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
+}
 
 /* Loader */
-#loader {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+#loader{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
 }
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 8px solid rgba(0, 212, 255, 0.3);
-  border-top-color: #00d4ff;
-  border-radius: 50%;
-  animation: spin 1.2s linear infinite;
+.spinner{
+  width:60px;
+  height:60px;
+  border:8px solid rgba(0,212,255,0.3);
+  border-top-color:#00d4ff;
+  border-radius:50%;
+  animation:spin 1.2s linear infinite;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin{to{transform:rotate(360deg);}}
 
-/* Fondo */
+/* Fondo con movimiento visible */
 #bgImage{
-    position:fixed; inset:0; z-index:-2;
+    position:fixed;
+    inset:-10%;
+    z-index:-2;
     background:url('visual.png') center center/cover no-repeat;
-    filter:brightness(0.35);
+    animation:bgMove 25s ease-in-out infinite alternate;
+    filter:brightness(0.65) contrast(1.1);
 }
-.overlay{position:fixed; inset:0; background:var(--glass); z-index:-1;}
+@keyframes bgMove{
+    0%{transform:scale(1) translateY(0);}
+    100%{transform:scale(1.1) translateY(-30px);}
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    z-index:-1;
+}
 
 .container{
     position:relative;
@@ -54,7 +73,7 @@ body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hid
     text-align:center;
 }
 
-/* Logo */
+/* Logo centrado */
 #logo{
     width:140px;
     height:140px;
@@ -105,9 +124,16 @@ body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hid
     text-decoration:none;
     transition:0.3s;
 }
-.btn:hover{transform:scale(1.08); box-shadow:0 0 25px var(--accent);}
+.btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 25px var(--accent);
+}
 
-footer{text-align:center; padding:20px; opacity:.7;}
+footer{
+    text-align:center;
+    padding:20px;
+    opacity:.7;
+}
 </style>
 </head>
 
@@ -139,31 +165,30 @@ footer{text-align:center; padding:20px; opacity:.7;}
 </ul>
 </div>
 
-<!-- FECHA MODIFICADA -->
 <div class="card">
 <h2>📅 Fecha y Horario</h2>
 <p><b>Domingo 18 de enero</b></p>
-<p>Horario nocturno, desde las 9:00 p.m. en adelante.</p>
+<p>Inicio desde las <b>9:00 p.m.</b> (hora Colombia).</p>
 </div>
 
 <div class="card">
 <h2>🏟️ Formato del Torneo</h2>
 <p>Se iniciará con una <b>sala de práctica</b>.</p>
-<p>Luego se jugará la <b>sala avanzada</b>, que definirá a los ganadores.</p>
+<p>Luego se jugará la <b>sala avanzada</b>, que definirá al ganador.</p>
 </div>
 
 <div class="card">
 <h2>🏆 Premios</h2>
 <ul>
-<li><b>Equipo ganador: 130.000 COP</b></li>
-<li>Esta es la recompensa base.</li>
+<li>Equipo ganador: <b>130.000 COP</b></li>
+<li>Recompensa base.</li>
 <li>Si no se completan los 12 equipos, el monto se redistribuye proporcionalmente.</li>
 </ul>
 </div>
 
 <div class="card">
 <h2>📩 Inscripción</h2>
-<p>Confirma tu participación haciendo click en el botón de abajo y únete a nuestra comunidad de WhatsApp:</p>
+<p>Confirma tu participación y únete a nuestra comunidad de WhatsApp:</p>
 <a class="btn" href="https://chat.whatsapp.com/KXQaNkXyiFW9BQgMOap3kI" target="_blank">
 ✅ Unirme a la Comunidad de WhatsApp
 </a>
@@ -179,7 +204,10 @@ window.addEventListener('load', ()=>{
   logo.style.opacity=1;
   title.style.opacity=1;
   document.querySelectorAll('.card').forEach((c,i)=>{
-    setTimeout(()=>{c.style.opacity=1;c.style.transform='translateY(0)';},400+i*200);
+    setTimeout(()=>{
+      c.style.opacity=1;
+      c.style.transform='translateY(0)';
+    },400+i*200);
   });
 });
 </script>
