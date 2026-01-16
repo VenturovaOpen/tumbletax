@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tumble Tax | Torneos Free Fire</title>
+<title>Tumble Tax | Torneos</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -14,13 +14,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
-body{
-    font-family:'Rajdhani',sans-serif;
-    background:#000;
-    color:#fff;
-    overflow-x:hidden;
-    scroll-behavior:smooth;
-}
+body{font-family:'Rajdhani',sans-serif;background:#000;color:#fff;overflow-x:hidden;scroll-behavior:smooth;}
 
 /* Loader */
 #loader{
@@ -43,7 +37,7 @@ body{
 }
 @keyframes spin{to{transform:rotate(360deg);}}
 
-/* Fondo con movimiento visible */
+/* Fondo animado */
 #bgImage{
     position:fixed;
     inset:-10%;
@@ -73,7 +67,7 @@ body{
     text-align:center;
 }
 
-/* Logo centrado */
+/* Logo */
 #logo{
     width:140px;
     height:140px;
@@ -124,16 +118,9 @@ body{
     text-decoration:none;
     transition:0.3s;
 }
-.btn:hover{
-    transform:scale(1.08);
-    box-shadow:0 0 25px var(--accent);
-}
+.btn:hover{transform:scale(1.08); box-shadow:0 0 25px var(--accent);}
 
-footer{
-    text-align:center;
-    padding:20px;
-    opacity:.7;
-}
+footer{text-align:center; padding:20px; opacity:.7;}
 </style>
 </head>
 
@@ -149,11 +136,11 @@ footer{
 <div class="overlay"></div>
 
 <div class="container">
-<h1 id="title">Tumble Tax Free Fire</h1>
+<h1 id="title">Tumble Tax</h1>
 
 <div class="card">
 <h2>🎯 Nuestro Objetivo</h2>
-<p>Crear una comunidad fuerte y profesional donde los jugadores puedan disfrutar torneos diarios, competir de manera justa y ganar recompensas reales.</p>
+<p>Crear una comunidad fuerte y profesional donde los jugadores puedan disfrutar torneos competitivos, participar de forma justa y ganar recompensas reales.</p>
 </div>
 
 <div class="card">
@@ -161,42 +148,41 @@ footer{
 <ul>
 <li>Modalidad: Battle Royale – Equipos</li>
 <li>Cupos: 12 equipos</li>
-<li>Inscripción: 15.000 COP por equipo (≈ 3.750 COP por jugador)</li>
+<li>Inscripción: 15.000 COP por equipo</li>
 </ul>
 </div>
 
 <div class="card">
 <h2>📅 Fecha y Horario</h2>
-<p><b>Domingo 18 de enero</b></p>
-<p>Inicio desde las <b>9:00 p.m.</b> (hora Colombia).</p>
+<p>El torneo se realizará el <b>domingo 18 de enero</b>.</p>
+<p>Horario nocturno, desde las <b>9:00 p.m.</b> (hora Colombia).</p>
 </div>
 
 <div class="card">
 <h2>🏟️ Formato del Torneo</h2>
 <p>Se iniciará con una <b>sala de práctica</b>.</p>
-<p>Luego se jugará la <b>sala avanzada</b>, que definirá al ganador.</p>
+<p>Posteriormente se jugará la <b>sala avanzada</b>, que definirá los resultados finales.</p>
 </div>
 
 <div class="card">
 <h2>🏆 Premios</h2>
 <ul>
-<li>Equipo ganador: <b>130.000 COP</b></li>
-<li>Recompensa base.</li>
-<li>Si no se completan los 12 equipos, el monto se redistribuye proporcionalmente.</li>
+<li>Equipo ganador: <b>100.000 COP</b></li>
+<li>Equipo con más kills: <b>40.000 COP</b></li>
 </ul>
+<p style="font-size:0.9rem; opacity:0.8;">
+En caso de no completarse los 12 equipos, los premios se redistribuirán de forma proporcional.
+</p>
 </div>
 
 <div class="card">
 <h2>📩 Inscripción</h2>
-<p>Confirma tu participación y únete a nuestra comunidad de WhatsApp:</p>
-<a class="btn" href="https://chat.whatsapp.com/KXQaNkXyiFW9BQgMOap3kI" target="_blank">
-✅ Unirme a la Comunidad de WhatsApp
-</a>
+<p>La inscripción se realiza por mensaje privado.</p>
 </div>
 
 </div>
 
-<footer>Tumble Tax © 2026 | Torneos Free Fire</footer>
+<footer>Tumble Tax © 2026 | Torneos</footer>
 
 <script>
 window.addEventListener('load', ()=>{
@@ -205,8 +191,8 @@ window.addEventListener('load', ()=>{
   title.style.opacity=1;
   document.querySelectorAll('.card').forEach((c,i)=>{
     setTimeout(()=>{
-      c.style.opacity=1;
-      c.style.transform='translateY(0)';
+        c.style.opacity=1;
+        c.style.transform='translateY(0)';
     },400+i*200);
   });
 });
